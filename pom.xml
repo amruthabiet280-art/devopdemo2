@@ -70,39 +70,7 @@
   
  
  
-  
- 
- 
- 
- 
- 
- 
- 
- 
-  
-  
-  
-  
- 
-  
- 
-  
- 
-  
-  
- 
-  
- 
- 
- 
- 
- 
-  
- 
- 
- 
- 
-  
+  https://www.youtube.com/watch?v=LRevqwfpUFY&t=1450s
  
 Experiment 2: Working with Maven: Creating a Maven Project, Understanding the POM File, Dependency Management and Plugins 
  
@@ -129,8 +97,6 @@ Steps to create Maven project in intelliJ IDEA
 3.	Set Up the pom.xml File: 
 •	The  pom.xml file is where you define dependencies, plugins, and other configurations for your Maven project. Example of a basic pom.xml : 
  
-•  
-  
 4.	Add Dependencies for Selenium and TestNG: 
 •	In the pom.xml file, add Selenium and TestNG dependencies under the <dependencies> section. 
 •	Go to Browser-> search for maven repository ->search Selenium java 
@@ -177,12 +143,12 @@ body {
  
 6. Upload the website to Github. 
 •	Initialize a Git repository in your project folder: 
-   
-  
-•	Add your files and commit them: 
-  
-•	Create a GitHub repository and push the local project to GitHub: 
-   
+git init
+•Add your files and commit them:
+git add .
+git commit-m"INITIAL COMMIT"
+•Create a GitHub repository and push the local project to GitHub: 
+ git remote add origin<url>  
 Deployment 
 •	To deploy your Maven project to GitHub Pages using the /docs folder ( ** having all files inside root folder/dir not recommended ), you can follow these simple steps. 
 •	Steps to Deploy to GitHub Pages Using /docs Folder 
@@ -224,15 +190,17 @@ Folder.
 In this configuration:  
 •	The maven-resources-plugin copies all files from src/main/resources to the /docs folder in the root of your project (not the target directory).  
 •	This is done during the prepare-package phase, just before Maven prepares the package. 
-2. Build the Project: Run the following Maven command to build your project  and copy the  resources to the /docs folder: 
+2. Build the Project: Run the following Maven command to build your project  and copy the  resources to the /docs folder: mvn clean install
   
 • 	After this, your index.html , style.css , and project. logo.png files should now be inside the docs folder in the root of your  project. 
   
 3.	Push Changes to GitHub : Now that the files are in the /docs folder, they are ready to be served by GitHub Pages. 
        Follow these steps: 
 	Stage the changes (the updated /docs folder): 
-  
-	Push to GitHub: 
+	git add docs/*
+	git commit -m "deploy site to GitHub Pages"								
+Push to GitHub: 
+git push origin master									
   
 4.	Enable GitHub Pages: After pushing to the main branch, follow these    steps to enable GitHub Pages: 
 •	Go to your GitHub repository.  
@@ -240,7 +208,7 @@ In this configuration:
 •	Under the Source section, select the main branch and /docs folder as the source. 
 •	Click Save. 
 5.	Access your  website: Your static website is now hosted on GitHub Pages!   You can access and copy the link: 
-  
+  <url>
  
 6.Write a Simple Selenium Test with TestNG 
 •	Create a  package org.test  and new Java class WebPageTest.java in the    src/test/java directory. 
@@ -304,9 +272,9 @@ System.out.println("Hello, this is a simple output from the main class!");
   
 3.	Package the Project into a JAR: 
 •	After configuring the plugin and creating the MainClass , run the following   Maven command to build the project and package it into a JAR file: 
-•	  
+•	  mvn clean package
 •	This will clean any previous builds, compile the source code, and      package it into a JAR file located in the  target directory  (e.g., target/your-project-name.jar ). 
-•	4. Run the JAR File: 
+4. Run the JAR File: 
 •	Once the JAR is created, you can run it with the following command: 
 •	This will execute the main method from your MainClass and print the message: 
 •	Output=Hello, this is a simple output from the main class! 
@@ -327,6 +295,7 @@ Maven Site and Deploy Commands
   </plugins> 
  </build> 
 Step 2: Run the Site Command 
+	 mvn site
   
  
   
@@ -334,7 +303,9 @@ mvn deploy Command:
     The mvn deploy command is used to upload the built artifact (JAR, POM, etc.) to a repository for distribution and sharing. 
   
     Steps to Use mvn deploy: 
-• 	Since you don’t have a remote repository, we will configure a local repository.     Step 1: Create a Local Repository 
+• 	Since you don’t have a remote repository, we will configure a local repository.     
+	 Step 1: Create a Local Repository 
+	 mkdir D:\my.local.maven.repo
   
 Step 2: Configure pom.xml for Local Deployment 
 Add the following inside in pom.xml  after build: 
@@ -345,6 +316,7 @@ Add the following inside in pom.xml  after build:
       </repository> 
 </distributionManagement> 
 Step 3: Run the Deploy Command 
+	 mvn deploy 
   
 	Maven builds the project.  
 	Stores the artifact (JAR, POM, etc.) in D:/my-local-maven-repo . 
@@ -1126,8 +1098,7 @@ A	work tracking system that helps teams manage work items, sprints, backlogs, an
 Provides a solution for managing and executing tests, capturing data about defects, and tracking quality. 
 •	Azure 	Artifacts: 
 Allows you to create, host, and share packages (such as Maven, npm, NuGet, and Python packages) with your team, integrating package management into your CI/CD pipelines. 
- 
-These services integrate with each other and with popular third-party tools to create a cohesive DevOps ecosystem. 
+ These services integrate with each other and with popular third-party tools to create a cohesive DevOps ecosystem. 
  
 Setting Up an Azure DevOps Account 
  
@@ -1140,18 +1111,7 @@ o	Navigate to the Azure DevOps website: https://dev.azure.com.
 o	If you already have a Microsoft account (such as Outlook, Hotmail, or Office 
 365), click “Sign in”. o If you do not have a Microsoft account, click “Create one!” and follow the instructions to create a new Microsoft account. 
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-3.	Accept the Terms and Conditions: 
+ 3.	Accept the Terms and Conditions: 
 o	Review and accept the terms if prompted. 
  
 Step 2: Create an Azure DevOps Organization 
@@ -1196,490 +1156,3 @@ o	Once your project is created, you will be directed to the project dashboard. H
 o	Click through each section (e.g., Repos, Pipelines, Boards) to get a sense of the available features. 
  
  
-Experiment 10: Creating Build Pipelines: Building a Maven/Gradle Project with Azure Pipelines, Integrating Code Repositories (e.g., GitHub, Azure Repos), Running Unit Tests and Generating Reports 
-Step 1: Installing IntelliJ IDEA 
- 
-1.	Download IntelliJ Idea from https://www.jetbrains.com/idea/download/?section=linux and activate a free trial for 30 days or through the following command. $ sudo snap install intellij-idea-community --community 
-2.	Open the IDE using the below command in the terminal. $ intellij-idea-community 3. Java is a pre-requisite for using this IDE 
- 
- 
- 
-Step 2: Create a new Maven project using the IDE. 
- 
-Create a project by clicking on the New Project option, choose an appropriate name and select the following features as mentioned in the image (Build system: Maven andLanguage: Java) 
- 
-  
- 
-Step 3: Install GIT and configure it 
- 
-1.	Check whether git is installed using the following command. $ git -version 
-2.	Install git using $ sudo apt install git 
- 
- 
- 
- 
- 
-3.	Once git has been installed execute the following commands one by one. 
- 
- 
-$ git init $ git add . 
-$ git commit -m “First Commit” 
-$ git branch -M main 
- 
-Configure git using the below commands 
-$ git config --global user.name “Your_Name” 
-$ git config --global user.email “Your_Email_ID” 
- 
- 
-Go to https://github.com sign in with your account and create a new private repository with the same name as your maven project. 
- 
- 
-1.	Copy the SSH URL for the created repository. 
-2.	Now go back to IDE’s terminal and execute the following commands 
-$ ssh-keygen -t rsa -b 4096 -C youremail@gmail.com 
-(press ENTER for all questions) 
-$ cat ~/.ssh/id_rsa.pub (copy the printed SSH key) 
-1.	Now go to the SSH and GPG section in the GitHub settings option. 
-2.	Click on the New SSH key button. 
-3.	Choose a suitable name and paste the SSH key into the provided space. 
-4.	Now get back to the IDE’s terminal and type the following command $ git remote set-url origin git@github.com:repo_owner/repo_name.git (Here, git@github.com:dk172923/sample.git is the remote URL to use SSH dk172923 – GitHub ID sample.git – repository name) 
- 
-Now finally run the push commands to push the code to the remote repository from the local repository. 
-$ git push --set-upstream origin main (Type YES for prompted question) 
-$ git push 
- 
- 
- 
- 
-The code has been successfully pushed to the remote repository. 
- 
- 
- 
- 
- 
- 
- 
-STEP 5: Create a pipeline for the created maven repository. 
-Click on Pipelines on the left pane of the Azure DevOps website. 
- 
-  
- 
-1.	Click on the Create Pipeline button. 
- 
-2.	Choose the GitHub YAML option. 
- 
- 
- 
-1.	Select the created repository “sample” from the available repositories. 
- 
-2.	Give permissions if prompted to do so and sign in to your GitHub account if needed. 
- 
-  
- 
-3.	Choose Maven Pipeline from the given options. 
- 
-4.	A YAML file is automatically created based on the configuration details found in the pom.xml file in the repository. 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-1.	Press the Save and Run button. 
-2.	Create a commit message and press the run button again. 
- 
-3.	Click on the created Job from the Jobs table. 
- 
- 
- 
-A successful job completion would be like this. 
- 
- 
- 
-Below is a detailed section that explains how to run unit tests and generate reports in an Azure 
-DevOps pipeline after your Maven project has been built. This section explains what happens during the Maven build process, how test results are generated, and how to publish these results as part of your pipeline execution. 
- 
-Running Unit Tests and Generating Reports with Maven in Azure DevOps 
- 
-When you build your Maven project using Azure Pipelines, the build process usually includes running unit tests with the Maven Surefire plugin. This plugin executes tests (typically written with JUnit) and produces test result files in XML format. Azure Pipelines can then pick up these XML files and present them as part of the build summary. Below are the steps and details to ensure that your unit tests are executed and the reports are published. 
- 
-1.	Maven Surefire Plugin and Test Reports What Happens During the Maven Build? 
-•	Maven 	Surefire 	Plugin: 
-When you run the command mvn clean package (or mvn test), the Surefire plugin automatically executes the unit tests found in the src/test/java directory. 
-•	Test 	Report 	Generation: 
-By default, the Surefire plugin creates XML reports in the target/surefire-reports/ directory. These files usually have names like TEST-<TestClassName>.xml. 
-•	Importance 	of 	Test 	Reports: 
-These XML files contain detailed information on test execution, including the number of tests run, passed, failed, and any error messages or stack traces. 
- 
-2.	Configuring Your Azure Pipeline to Publish Test ResultsAfter your Maven build runs and tests are executed, you need to add a step in your Azure Pipeline YAML file that locates these test reports and publishes them in Azure DevOps. This is accomplished by using the PublishTestResults@2 task. 
- 
-YAML Configuration Example for Maven 
- 
-Below is a sample snippet of a YAML pipeline configuration that includes both the Maven build step and a step to publish test results: 
- 
-trigger: 
--	main 
- 
- 
- 
- 
-pool: 
- 
-vmImage: 'ubuntu-latest' 
- 
- 
- 
- 
-steps: 
- 
-# Step 1: Maven Build and Test Execution 
- 
--	task: Maven@3 inputs: 
-mavenPomFile: 'pom.xml' # Ensure your pom.xml is at the repository root goals: 'clean package' 
-	options: '' 	# Add any additional Maven options if needed 
- 
- 
- 
- 
-# Step 2: Publish Unit Test Results 
- 
--	task: PublishTestResults@2 inputs: 
-testResultsFiles: '**/target/surefire-reports/TEST-*.xml' mergeTestResults: true 
-testRunTitle: 'Maven Unit Test Results' 
- 
-Explanation of the YAML Steps: 
-1.	Maven Build Step: o 	Task: Maven@3 o 	Input: 
-	mavenPomFile: Points to your pom.xml. 
-	goals: The goals clean package ensure that your code is cleaned, compiled, tested, and packaged. The Surefire plugin runs tests during this process. o Outcome: Maven executes the tests and creates XML reports under the target/surefire-reports/ folder. 
-2.	Publish Test Results Step: 
-o	Task: PublishTestResults@2 o 	Input: 
-	testResultsFiles: Uses a glob pattern (**/target/surefire-reports/TEST- *.xml) to find all XML test result files. 
-	mergeTestResults: Set to true so that if there are multiple result files, they are merged into a single report. 
-	testRunTitle: Provides a title for the test run that will appear in the Azure DevOps test results view. 
-o	Outcome: Azure Pipelines reads the test result XML files and displays a summary in the pipeline's Tests tab. You’ll be able to see metrics like the number of tests passed, failed, or skipped, and review detailed error messages for any failures. 
- 
-3.	Running and Verifying the Pipeline 
- 
-After committing the YAML file to your repository, the pipeline is triggered (either automatically or manually): 
- 
-1.	Trigger the Pipeline: 
-o	Once your YAML file is saved in your repository, Azure Pipelines will pick up the changes. If not automatically triggered, you can click “Run pipeline” manually. 
-o	Screenshot Tip: Capture the pipeline run screen where you see the stages (e.g., Checkout, Maven Build, Publish Test Results). 
-2.	Monitor the Build Output: 
- 
-Navigate to the “Build” or “Logs” section of the pipeline run. o Confirm that the Maven task logs show the execution of tests and that the Surefire reports are created. 
-3.	Review Test Reports: 
-o	Once the build completes, click on the “Tests” tab (often found on the pipeline summary page) to review the detailed test results. 
-o	Screenshot Tip: Capture the test report summary, showing the number of tests executed, passed, and failed. You may also capture detailed logs for any failed tests. 
- 
-4.	Troubleshooting Tips 
- 
-	• 	No 	Test 	Results 	Found: 
-If you see a warning that no test results were found, verify that: 
-o	Your tests are indeed being executed (check the Maven build log). o 	The path in testResultsFiles correctly matches the location and naming pattern of the generated XML files. 
-	• 	Test Failures: 
-If tests fail, review the published test report for detailed error messages and stack traces. Adjust your tests or code as necessary and re-run the pipeline. 
-Experiment 11: Creating Release Pipelines: Deploying Applications to Azure App Services, Managing Secrets and Configuration with Azure Key Vault, Hands-On: Continuous Deployment with Azure Pipelines 
-1.	Overview 
- 
-In this experiment, you will: 
- 
-•	Deploy your build artifact (e.g., a JAR or WAR file from a Maven/Gradle project) to an Azure App Service. 
-•	Manage secrets and configuration securely using Azure Key Vault. 
-•	Set up a release pipeline in Azure DevOps that automatically deploys your application when a new artifact is available (continuous deployment). 
- 
-This experiment bridges the gap between build automation (CI) and release automation (CD) while ensuring secure management of sensitive information. 
- 
-2.	Prerequisites 
- 
-Before you begin, ensure that you have: 
- 
-•	An Azure DevOps account with a project set up (see Experiment 9 and Experiment 10). 
-•	A build artifact (e.g., your Maven/Gradle artifact) available from a build pipeline. 
-•	An Azure Subscription with an Azure App Service instance already created to host your application. 
-•	An Azure Key Vault instance created in your Azure Subscription for storing secrets (e.g., connection strings, API keys). 
-•	Appropriate permissions to create and manage resources in Azure DevOps and your Azure Subscription. 
- 
-3.	Creating a Release Pipeline in Azure DevOps 
- 
-A.	Create a New Release Pipeline 
- 
-1.	Log in to Azure DevOps: 
-Open your web browser and navigate to your Azure DevOps project (e.g., https://dev.azure.com/YourOrganization). 
-Navigate to the Releases Section: 
-o	In the left-hand menu, click on “Pipelines” and then “Releases”. 
-3. Create a New Pipeline: 
-o	Click on “New pipeline”. 
-o	When prompted, select “Empty job” (or start with a template if one suits your needs). 
- 
- 
- 
-B.	Add an Artifact 
- 
-1.	Link Your Build Artifact: 
-o	In the release pipeline editor, click on “Add an artifact”. 
-o	Source Type: Choose the source (e.g., “Build”). 
-o	Source (Build Pipeline): Select the build pipeline that produces your Maven/Gradle artifact. 
-o	Default Version: Use the latest version (or specify a branch/tag as needed). 
-o	Click “Add”. 
- 
-C.	Define a Stage for Deployment 
- 
-1.	Add a New Stage: 
- 
-Click on “Add a stage” and select “Empty job”. o 	Rename the stage (e.g., Development or Production). 
-Configure the Stage: 
-o	Click on the stage to open its settings. 
-o	In the “Tasks” view for the stage, click “+” to add a new task. 
- 
-4. Deploying to Azure App Services 
- 
-A. Add the Azure App Service Deploy Task 
- 
-1.	Add Deployment Task: 
-o	In the stage tasks, click on “+ Add” and search for “Azure App Service 
-Deploy”. 
-o	Click “Add” to include it in your stage. 
-2.	Configure the Azure App Service Deploy Task: 
-o	Azure Subscription: 
-	Click on “Authorize” (if required) and select your Azure subscription. 
-o	App Service Type: Choose “Web App on Windows” or “Web App on Linux” based on your deployment target. 
-o	App Service Name: Enter the name of your Azure App Service instance. 
-o	Package or Folder: 
-	Specify 	the 	path 	to 	your 	build 	artifact 	(for 	example, $(System.DefaultWorkingDirectory)/_HelloMaven- 
-CI/drop/HelloMaven-1.0-SNAPSHOT.jar or the folder containing your package). Adjust the path based on your artifact’s location. 
-o	Deployment Options: Configure any additional options (e.g., deployment slot, resource group) as needed. 
- 
-5. Managing Secrets and Configuration with Azure Key Vault 
- 
-A.	Create and Configure an Azure Key Vault (in Azure Portal) 
- 
-1.	Create a Key Vault (if not already created): 
-o	Log in to the Azure Portal. o 	Click on “Create a resource” and search for “Key Vault”. 
-Follow the prompts to create a new Key Vault (enter a name, select subscription, resource group, and region). 
-Add Secrets to Your Key Vault: 
-o	Once the Key Vault is created, navigate to it. 
-o	Click on “Secrets” and then “Generate/Import”. 
-o	Create new secrets (e.g., DBConnectionString, APIKey) and note their names. 
- 
-B.	Integrate Key Vault with Azure DevOps 
- 
-1.	Create a Variable Group Linked to Key Vault: 
-o	In your Azure DevOps project, navigate to “Pipelines” and then “Library”. o 	Click on “+ Variable group”. 
-o	Name the variable group (e.g., KeyVault-Secrets). o 	Enable “Link secrets from an Azure Key Vault as variables”. o 	Click “Authorize” and select your Azure subscription. o 	Select your Key Vault from the dropdown list. o 	Choose the secrets you want to import into the variable group. 
-o	Save the variable group. 
-2.	Use the Variable Group in Your Release Pipeline: 
-o	In your release pipeline, click on the “Variables” tab. 
-o	Click “Variable groups” and then “Link variable group”. o 	Select the variable group you created (KeyVault-Secrets). 
-o	Now, you can reference these secrets as variables in your deployment tasks (for example, $(DBConnectionString)). 
- 
-6. Enabling Continuous Deployment 
- 
-A.	Configure Continuous Deployment Trigger 
- 
-1.	Enable Continuous Deployment: 
-o	In your release pipeline, click on the “Triggers” tab. o Under “Artifact filters” or “Continuous deployment trigger”, enable the toggle to allow the release pipeline to trigger automatically when a new build artifact is available. 
-o	Optionally, you can specify branch filters or artifact version filters. 
-2.	Save the Release Pipeline: 
-o	Click “Save” to apply all changes. 
- 
-B.	Test the Continuous Deployment Pipeline 
- 
-1.	Trigger a Build: 
-o	Commit a change to your code repository to trigger your build pipeline (or trigger it manually). 
-o	Verify that the build pipeline creates a new artifact. 
-2.	Automatic Release: 
-o	Once the new artifact is published, the release pipeline should automatically trigger a new release. 
-o	Monitor the release pipeline execution to ensure that: 
-	The artifact is deployed to the Azure App Service. 
-	The deployment task uses the configuration and secrets from Key Vault. 
- 
-Experiment 12: Practical Exercise and Wrap-Up: Build and Deploy a Complete DevOps Pipeline, Discussion on Best Practices and Q&A 
-1.	Overview 
- 
-In this experiment, you will create an end-to-end DevOps pipeline that demonstrates the following processes: 
- 
-•	Version Control: Code is maintained in a Git repository (e.g., GitHub or Azure Repos). 
-•	Continuous Integration (CI): 
-o	A CI tool (Jenkins and/or Azure Pipelines) automatically checks out the code, builds it using Maven/Gradle, runs unit tests, and archives the build artifact. 
-•	Artifact Management: The artifact (e.g., a JAR file) is archived and made available for deployment. 
-•	Continuous Deployment (CD): 
-o	Deployment automation is handled either by an Ansible playbook or an Azure Release pipeline, deploying the artifact to a target environment (such as an Azure App Service or a local server). 
-•	Secrets and Configuration Management: Securely manage configuration details and secrets using Azure Key Vault. 
-•	Pipeline as Code: Use YAML (for Azure Pipelines) or a Jenkinsfile (for Jenkins) to define your build and release processes. 
- 
-After setting up and running the pipeline, we will discuss best practices for designing and maintaining such pipelines and open the floor for a Q&A discussion. 
- 
-2.	Prerequisites 
- 
-Before starting, ensure you have completed or have access to the following: 
- 
-•	Source Code Repository: 
-o	A Java project (e.g., “HelloMaven” or “HelloGradle”) hosted on GitHub or Azure Repos. 
-o	The project should follow a standard structure (with pom.xml for Maven or build.gradle for Gradle, and appropriate src/main/java and src/test/java directories). 
-•	Jenkins and/or Azure DevOps Setup: 
-o	Jenkins installed and configured on your local machine or a cloud server (refer to Experiments 5 and 6), or an Azure DevOps project set up with a build pipeline (Experiments 9 and 10). 
-•	Ansible Installed: 
-o	Ansible is installed on your control machine (or Jenkins server) with a basic inventory file (see Experiment 7). 
-•	Azure Resources: (Optional but recommended for cloud deployment) o An Azure App Service instance created to host your application. o An Azure Key Vault instance set up to store sensitive data (e.g., connection strings). 
-•	Access Credentials: 
-o	Permissions to commit code to the repository. o Administrative access on Jenkins/Azure DevOps. 
-o	Proper permissions on Azure to deploy to App Services and to manage Key Vault secrets. 
- 
-3.	Step-by-Step Pipeline Setup 
- 
-Step 1: Code Repository Preparation 
- 
-1. Ensure Your Project Is in Version Control: 
-o	Navigate to your project folder (e.g., “HelloMaven”) and initialize Git if not already done: 
-o	cd /path/to/HelloMaven o 	git init o 	git add . 
-o	git commit -m "Initial commit of HelloMaven project" o Push the project to your remote repository (e.g., GitHub): 
-o	git remote add origin https://github.com/yourusername/HelloMaven.git o 	git push -u origin main 
-Step 2: Continuous Integration with Jenkins and/or Azure Pipelines 
- 
-A.	Jenkins CI Pipeline Setup 
- 
-1.	Create a New Jenkins Job: 
-o	Log in to Jenkins and click “New Item”. 
-o	Enter a name (e.g., HelloMaven-CI) and select “Freestyle project” or 
-“Pipeline”. 
-o	Screenshot Tip: Capture the new job creation screen. 
-2.	Configure Source Code Management: 
-o	Under the “Source Code Management” section, select “Git”. 
-o	Enter 	your 	repository 	URL 	(e.g., https://github.com/yourusername/HelloMaven.git) and set branch specifier to */main. 
-3.	Add Build Steps: 
-o	For Maven Projects: 
-	Add a build step “Invoke top-level Maven targets” and set the goals to: 
-	clean package o 	For Pipeline-as-Code (Jenkinsfile): 
-	Create a Jenkinsfile in your repository with stages for checkout, build, test, and archive. For example: 
-	pipeline { 
-	agent any 
-	stages { 
-	stage('Checkout') { 
-	steps { 
-	git url: 'https://github.com/yourusername/HelloMaven.git', branch: 'main' 
-	} 
-	} 
-	stage('Build') { 
-	steps { 
-	sh 'mvn clean package' 
-	} 
-	} 
-	stage('Test') { 
-	steps { 
-	sh 'mvn test' 
-	} 
-	} 
-	stage('Archive') { 
-	steps { 
-	archiveArtifacts artifacts: 'target/*.jar', fingerprint: true 
-	} 
-	} 
-	} 
-	} 
-4.	Run the Jenkins Job: 
-o	Click “Build Now” and monitor the console output. Ensure that the build is successful and that test reports are generated. 
- 
-B.	Azure DevOps Build Pipeline Setup 
- 
-1.	Create a New Pipeline: 
-o	Log in to your Azure DevOps project. o 	Navigate to “Pipelines” and click “New pipeline”. 
-o	Select your repository source (GitHub or Azure Repos) and choose your repository. 
-2.	Define Your YAML Pipeline: 
-o	Use the following sample YAML for a Maven project: 
-o	trigger: o - main 
-o	o pool: o vmImage: 'ubuntu-latest' 
-o	o 	steps: 
-o	- task: Maven@3 
-o	inputs: 
-o	mavenPomFile: 'pom.xml' o 	goals: 'clean package' o 	- task: PublishTestResults@2 o 	inputs: 
-o	testResultsFiles: '**/target/surefire-reports/TEST-*.xml' o 	mergeTestResults: true o 	testRunTitle: 'Maven Unit Test Results' 
-3.	Run the Pipeline and Verify Test Reports: 
-o	Commit and run the pipeline. 
-o	Navigate to the “Tests” tab to view the summary of executed tests 
- 
-Step 3: Artifact Management 
- 
-1. Artifact Archiving in Jenkins: 
-o	Ensure your Jenkins job archives the artifact (JAR file) using the “Archive the artifacts” post-build action. 
-2. Artifact in Azure Pipelines: 
-o	The build task produces an artifact that can be downloaded or referenced by subsequent release pipelines. 
- 
-Step 4: Deployment Automation with Ansible and Azure Release Pipeline 
- 
-A.	Using Ansible for Deployment 
- 
-1.	Write an Ansible Playbook: 
-o	Create a file named deploy.yml: o 	--- 
-o	- name: Deploy Maven Artifact o 	hosts: deployment o 	become: yes o 	tasks: o 	- name: Copy the artifact to the target directory o 	copy: 
-o	src: "/var/lib/jenkins/workspace/HelloMaven-CI/target/HelloMaven-1.0- 
-SNAPSHOT.jar" o 	dest: "/opt/deployment/HelloMaven.jar" o 	Adjust paths according to your environment. 
-2.	Configure Your Ansible Inventory: 
-o	Create or update your hosts.ini file: 
-o	[deployment] o 	target-server ansible_host=your.server.ip ansible_user=yourusername o 	For a local deployment, you can use: o 	[deployment] o 	localhost ansible_connection=local 
-3.	Integrate Ansible into Your Jenkins/Azure Pipeline: 
-o	Add a post-build (or post-release) step to execute the Ansible playbook: 
-o	ansible-playbook -i /path/to/hosts.ini /path/to/deploy.yml 
- 
-B.	Using Azure Release Pipeline to Deploy to Azure App Services 
- 
-1.	Create a New Release Pipeline in Azure DevOps: 
-o	Navigate to “Pipelines > Releases”. 
-o	Click “New pipeline” and select an empty job. 
-2.	Link Your Build Artifact: 
-o	Click “Add an artifact” and select your build pipeline as the source. 
-3.	Add a Deployment Stage for Azure App Service: 
-o	Create a new stage (e.g., Production). 
-o	Add the “Azure App Service Deploy” task. o 	Configure the task with your Azure subscription, target App Service, and the path to the artifact. 
-4.	Integrate Key Vault (Optional for Managing Secrets): 
-o	Create and link a Variable Group that pulls secrets from Azure Key Vault (refer to previous experiments). 
-o	Reference these secrets in your deployment tasks (e.g., connection strings). 
-5.	Enable Continuous Deployment: 
-o	In the release pipeline’s triggers, enable continuous deployment so that a new release is automatically created when a new artifact is available. 
-6.	Run the Release Pipeline and Verify Deployment: 
-o	Trigger the release pipeline (either manually or automatically). 
-o	Verify that the application is deployed to your target environment (e.g., by browsing to the Azure App Service URL or checking the deployment directory on the target server). 
- 
-Step 5: End-to-End Pipeline Demonstration 
- 
-1. Trigger a Complete Run: 
-o	Make a change in your code repository (e.g., modify a welcome message in your Java application) and commit it. 
-o	This should trigger the CI pipeline (Jenkins or Azure Pipelines), which builds, tests, and archives the artifact. 
-o	The artifact triggers the CD process (via Ansible or Azure Release), and the application is deployed automatically. 
-2. Verify the Entire Workflow: 
-o	Check the CI pipeline output (build success and test results). o 	Confirm that the artifact is archived. 
-o	Review the CD pipeline logs (deployment success, any post-deployment notifications, etc.). 
-o	Optionally, log into the target environment and verify that the new version of your application is running. 
- 
-Step 6: Discussion on Best Practices and Q&A Best Practices: 
-•	Pipeline 	as 	Code: 
-Use YAML (or a Jenkinsfile) to define your build and release pipelines. This allows you to version control your pipeline configuration alongside your code. 
-•	Automate 	Everything: 
-Automate code checkout, builds, tests, artifact archiving, and deployments. Reduce manual interventions to minimize human error. 
-•	Idempotence: 
-Ensure that your deployment scripts (whether Ansible playbooks or release tasks) are idempotent—running them multiple times produces the same result. 
-•	Secure Secrets Management: 
-Use Azure Key Vault (or a similar tool) to securely store sensitive data (e.g., API keys, connection strings) and reference these values in your pipelines. 
-•	Monitoring and Logging: 
-Integrate logging and monitoring into your pipeline. Review test reports, deployment logs, and set up notifications for build failures. 
-•	Modular and Scalable Design: 
-Break down your pipeline into clear stages (checkout, build, test, deploy) and design it to handle multi-environment deployments (development, staging, production). • 	Continuous Improvement: 
-Regularly review and refine your pipeline. Use metrics and feedback to optimize build times, reduce failures, and ensure high-quality releases. 
- 
-Q&A Discussion Points: 
- 
-•	Troubleshooting Pipeline Failures: 
-What are common reasons for build/test failures, and how can you diagnose issues from the logs? 
-•	Handling Rollbacks: 
-What strategies can be implemented for rolling back deployments if a release fails in production? 
-•	Scaling Pipelines: 
-How do you handle scaling the pipeline for larger projects or multiple microservices? 
-•	Integrating Additional Tools: 
-What additional tools (e.g., code quality analyzers, security scanners) could be integrated into this pipeline? 
-•	Real-World Challenges: 
-Discussion of challenges faced in actual DevOps implementations and strategies to overcome them. 
-Open the Floor for Questions: 
-Encourage participants to ask questions regarding any part of the pipeline—from technical configuration details to high-level best practices. 
